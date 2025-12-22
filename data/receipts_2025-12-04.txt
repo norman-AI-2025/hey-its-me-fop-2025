@@ -1,0 +1,22 @@
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2025-12-04 14:47:56
+From: HQ
+To:   C60
+Staff: Tan Guan Han
+--- Items List ---
+- ABC100-3 (Qty: 5)
+--------------------------------
+Total Quantity: 5
+================================
+
+=== STOCK TRANSACTION RECEIPT (Stock Out) ===
+Date/Time: 2025-12-04 14:50:01
+From: C60
+To:   C61
+Staff: Tan Guan Han
+--- Items List ---
+- ABC100-3 (Qty: 1)
+--------------------------------
+Total Quantity: 1
+================================
+
