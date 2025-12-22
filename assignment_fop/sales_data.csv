@@ -1,0 +1,5 @@
+SalesID,Date,CustomerName,ModelName,Quantity,TotalPrice
+S0001,2025-10-13,Zikri bin Abdullah,SW2500-1,1,845.0
+S0002,2025-10-13,Siti Aminah,DW2300-4,1,349.0
+S0003,2025-10-14,John Doe,MX-900,1,1200.5
+S0004,2025-10-14,Jane Smith,CAS-100,1,150.0
