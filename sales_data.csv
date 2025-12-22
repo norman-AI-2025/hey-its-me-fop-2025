@@ -1,5 +1,5 @@
-Date,CustomerName,Model,TotalAmount,PaymentMethod
-2025-10-13,Zikri bin Abdullah,SW2500-1,845.0,credit card
-2025-10-13,Siti Aminah,DW2300-4,349.0,cash
-2025-10-14,John Doe,MX-900,1200.50,e-wallet
-2025-10-14,Jane Smith,CAS-100,150.0,credit card
+Date,CustomerName,Model,TotalAmount,PaymentMethod, EmployeeID
+2025-10-13,Zikri bin Abdullah,SW2500-1,845.0,credit card,C6001
+2025-10-13,Siti Aminah,DW2300-4,349.0,cash,C6006
+2025-10-14,John Doe,MX-900,1200.50,e-wallet,C6012
+2025-10-14,Jane Smith,CAS-100,150.0,credit card,C6003
