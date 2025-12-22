@@ -35,6 +35,16 @@ class ItemPurchased
     }
 }
 
+class Employee {
+    String id;
+    String name;
+
+    public Employee(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}
+
 
 class SaleRecord {
     LocalDateTime localDateTime;
@@ -42,22 +52,21 @@ class SaleRecord {
     List<ItemPurchased> item;
     String paymentMethod;
     double totalAmount;
-    String employeeInCharge;
-//    String transactionStatus;
+    String employeeId;
 
-    public SaleRecord(LocalDateTime localDateTime, String customerName, List<ItemPurchased> item, String paymentMethod, double totalAmount, String employeeInCharge, String transactionStatus) {
+    public SaleRecord(LocalDateTime localDateTime, String customerName, List<ItemPurchased> item, String paymentMethod, double totalAmount, String employeeId) {
         this.localDateTime = localDateTime;
         this.customerName = customerName;
         this.item = item;
         this.paymentMethod = paymentMethod;
         this.totalAmount = totalAmount;
-        this.employeeInCharge = employeeInCharge;
-//        this.transactionStatus = transactionStatus;
+        this.employeeId = employeeId;
     }
 
-    public String toString() {
+    public String toString(Map<String, String> employeeNames) {
         String date = localDateTime.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         String time = localDateTime.format(java.time.format.DateTimeFormatter.ofPattern("hh:mm a"));
+        String employeeName = employeeNames.getOrDefault(this.employeeId, "Unknown");
 
         StringBuilder receipt = new StringBuilder();
         receipt.append("Date: ").append(date).append(" Time: ").append(time).append("\n");
@@ -68,7 +77,7 @@ class SaleRecord {
         }
         receipt.append("Total: RM").append(totalAmount).append("\n");
         receipt.append("Transaction Method: ").append(paymentMethod).append("\n");
-        receipt.append("Employee: ").append(employeeInCharge).append("\n");
+        receipt.append("Employee: ").append(employeeName).append(" (").append(this.employeeId).append(")").append("\n");
         return receipt.toString();
     }
 
@@ -82,7 +91,8 @@ class SaleRecord {
             csv.append(this.customerName).append(",");
             csv.append(items.model).append(",");
             csv.append(this.totalAmount).append(",");
-            csv.append(this.paymentMethod).append("\n");
+            csv.append(this.paymentMethod).append(",");
+            csv.append(this.employeeId).append("\n");
         }
         return csv.toString();
     }
@@ -120,7 +130,7 @@ public class SalesSystem
          return paymentMethod;
     }
 
-    public static SaleRecord recordNewSale(Scanner input, String employeeInCharge) throws IOException
+    public static SaleRecord recordNewSale(Scanner input, String employeeId) throws IOException
     {
 
         // getting the Data and the Time locally
@@ -196,13 +206,12 @@ public class SalesSystem
         // Get a valid payment method using the helper function
         System.out.print("Enter transaction method: ");
         String transactionMethod = getValidPaymentMethod(input.nextLine());
-        String transactionStatus = "Transaction verified.";
 
         System.out.println("Subtotal: "+ subtotal);
         System.out.println();
 
         // To record the Sales, pass the list of items
-        SaleRecord newSale = new SaleRecord(localDateTime, customerName, itemPurchased, transactionMethod, subtotal, employeeInCharge,transactionStatus);
+        SaleRecord newSale = new SaleRecord(localDateTime, customerName, itemPurchased, transactionMethod, subtotal, employeeId);
 
         System.out.println("Transaction successful.");
         System.out.println("Sale recorded successfully.");
@@ -225,11 +234,13 @@ public class SalesSystem
     {
         System.out.println("Receipt generated: sales_" + saleRecord.localDateTime.toLocalDate() + ".txt");
         String filename = "Sales_" + saleRecord.localDateTime.toLocalDate() + ".txt";
+        
+        Map<String, String> employeeNames = loadEmployeeNames();
 
         try (FileWriter writer = new FileWriter(filename,true))
         {
             writer.write("============================================== \n");
-            writer.write(saleRecord.toString());
+            writer.write(saleRecord.toString(employeeNames));
             writer.write("============================================== \n");
         }
     }
@@ -419,14 +430,26 @@ public class SalesSystem
             try (Scanner salesScanner = new Scanner(new FileInputStream(salesFile))) {
                 while (salesScanner.hasNextLine()) {
                     String line = salesScanner.nextLine();
+                    if (line.startsWith("Date")) continue; // Skip header
+
                     String[] parts = line.split(",");
                     if (parts.length >= 5) {
                         try {
-                            LocalDateTime dt = LocalDateTime.parse(parts[0]);
+                            LocalDateTime dt;
+                            try {
+                                dt = LocalDateTime.parse(parts[0]);
+                            } catch (Exception e) {
+                                // Fallback for date only format
+                                dt = java.time.LocalDate.parse(parts[0]).atStartOfDay();
+                            }
+                            
                             String customerName = parts[1];
                             String model = parts[2];
-                            int quantity = Integer.parseInt(parts[3]);
-                            double totalAmount = Double.parseDouble(parts[4]);
+                            double totalAmount = Double.parseDouble(parts[3]);
+                            String paymentMethod = parts[4];
+                            String employeeId = (parts.length > 5) ? parts[5] : "Unknown";
+                            
+                            int quantity = 1; // Default quantity to 1 as it's not in the file
                             double price = modelPrices.getOrDefault(model, 0.0);
         
                             // Use the location info from model.csv (aggregated)
@@ -436,8 +459,9 @@ public class SalesSystem
                             List<ItemPurchased> items = new ArrayList<>();
                             items.add(item);
         
-                            salesList.add(new SaleRecord(dt, customerName, items, "Unknown", totalAmount, "Unknown", "Verified"));
+                            salesList.add(new SaleRecord(dt, customerName, items, paymentMethod, totalAmount, employeeId));
                         } catch (Exception e) {
+                            // Ignore malformed lines
                         }
                     }
                 }
@@ -445,16 +469,36 @@ public class SalesSystem
         }
         return salesList;
     }
+    
+    public static Map<String, String> loadEmployeeNames() throws IOException {
+        Map<String, String> employeeNames = new HashMap<>();
+        File file = new File("employees.csv");
+        if (file.exists()) {
+            try (Scanner scanner = new Scanner(file)) {
+                if (scanner.hasNextLine()) scanner.nextLine(); // Skip header
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    String[] parts = line.split(",");
+                    if (parts.length >= 2) {
+                        employeeNames.put(parts[0], parts[1]);
+                    }
+                }
+            }
+        }
+        return employeeNames;
+    }
 
-    public static void SalesSystem(String employeeInCharge)
+    public static void SalesSystem(String employeeId)
     {
         try {
 
             Scanner input = new Scanner(System.in);
 
             List<SaleRecord> saleRecords = readRecords();
+            Map<String, String> employeeNames = loadEmployeeNames();
+            String employeeName = employeeNames.getOrDefault(employeeId, "Unknown User");
 
-            System.out.println("Welcome to Sales System, " + employeeInCharge);
+            System.out.println("Welcome to Sales System, " + employeeName);
 
             int choice;
 
@@ -462,9 +506,11 @@ public class SalesSystem
             EditSystem editSystem = new EditSystem();
 
             do {
-                System.out.println("1. Record New Sale       2. Search Stock Info\n" +
-                        "3. Search Sales Info     4. Edit Sale Info\n" +
-                        "5. Search Stock Info     5. Edit Stock Info");
+                System.out.println("1. Record New Sale");
+                System.out.println("2. Search Stock Info");
+                System.out.println("3. Search Sales Info");
+                System.out.println("4. Edit Sale Info");
+                System.out.println("5. Edit Stock Info");
                 System.out.print("Select the action you want to perform (-1 to exit): ");
                 choice = input.nextInt();
                 input.nextLine();
@@ -472,11 +518,12 @@ public class SalesSystem
                 switch (choice) {
                     case 1 -> {
                         System.out.println();
-                        SaleRecord newSale = recordNewSale(input, employeeInCharge);
+                        SaleRecord newSale = recordNewSale(input, employeeId);
+                        saleRecords.add(newSale);
                     }
                     case 2 -> {
                         System.out.println();
-                        searchSystem.searchSalesInfo(saleRecords);
+                        searchSystem.searchStockInfo();
                     }
                     case 3 -> {
                         System.out.println();
@@ -487,10 +534,6 @@ public class SalesSystem
                         editSystem.EditSalesInfo(saleRecords);
                     }
                     case 5 -> {
-                        System.out.println();
-                        searchSystem.searchStockInfo(saleRecords);
-                    }
-                    case 6 -> {
                         System.out.println();
                         editSystem.EditStockInfo(saleRecords);
                     }
@@ -505,43 +548,11 @@ public class SalesSystem
 
     public static void main(String[] args) throws Exception
     {
-
-        SalesSystem mainProgram = new SalesSystem();
-
-        mainProgram.SalesSystem("John Doe");
-
-//
-//        //here to create a searchsystem object for SearchSystem class
-//        SearchSystem searchSystem = new SearchSystem();
-//
-//        // FIX: Load existing records from files
-//        List<SaleRecord> saleRecords = readRecords();
-//
-//        // FIX: Optionally record a new sale and add it to the list
-//        SaleRecord newSale = recordNewSale(input, /*this employee will import from norman*/"John Doe");
-//        saleRecords.add(newSale);
-//
-//        // FIX: Pass the entire list to the search and edit methods
-//        searchSystem.searchStockInfo(saleRecords);
-//        System.out.println();
-//        searchSystem.searchSalesInfo(saleRecords);
-//        System.out.println();
-//
-//        //here to create a editsystem object for EditSystem class
-//        EditSystem editSystem = new EditSystem();
-//        editSystem.EditStockInfo(saleRecords);
-//        System.out.println();
-//        editSystem.EditSalesInfo(saleRecords);
-//        System.out.println();
-//
-//        searchSystem.searchStockInfo(saleRecords);
-//        System.out.println();
-//        searchSystem.searchSalesInfo(saleRecords);
-//        System.out.println();
-//
-
-        //so the idea is to integrate the all class in SalesSystem so that when access to SalesSystem they can use all these function
-
-
+        // Simplified login
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter Employee ID to login: ");
+        String employeeId = input.nextLine();
+        
+        SalesSystem(employeeId);
     }
 }

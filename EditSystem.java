@@ -1,5 +1,6 @@
 import java.util.*;
-
+import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class EditSystem
 {
@@ -53,14 +54,34 @@ public class EditSystem
                         System.out.print("Confirm Update? (Y/N): ");
                         if (input.nextLine().equalsIgnoreCase("Y"))
                         {
-                            // Update location specific quantity
                             int oldLocQty = item.location.get(locationIndex);
-                            item.location.set(locationIndex, newLocQty);
+                            int delta = newLocQty - oldLocQty;
                             
-                            // Update total quantity
+                            item.location.set(locationIndex, newLocQty);
                             item.quantity = item.quantity - oldLocQty + newLocQty;
                             
                             System.out.println("Quantity updated successfully in the record.");
+                            
+                            try {
+                                if (delta != 0) {
+                                    List<Integer> deltaLocs = new ArrayList<>(Collections.nCopies(10, 0));
+                                    deltaLocs.set(locationIndex, delta);
+                                    ItemPurchased deltaItem = new ItemPurchased(item.model, delta, item.price, deltaLocs);
+                                    
+                                    List<ItemPurchased> deltaItems = new ArrayList<>();
+                                    deltaItems.add(deltaItem);
+                                    
+                                    SaleRecord deltaRecord = new SaleRecord(LocalDateTime.now(), "Delta", deltaItems, "None", 0, "None");
+                                    
+                                    SalesSystem.saveToModelCsv(deltaRecord);
+                                    SalesSystem.saveToStockCsv(deltaRecord);
+                                }
+                                
+                                rewriteSalesData(saleRecords);
+                                
+                            } catch (IOException e) {
+                                System.out.println("Error updating files: " + e.getMessage());
+                            }
 
                         }
                         return;
@@ -101,7 +122,6 @@ public class EditSystem
         }
 
         System.out.println("Sales Record Found:");
-        // Assuming you want to display the first item's details for editing
         ItemPurchased firstItem = recordToEdit.item.get(0);
 
         System.out.println("Model: " + firstItem.model + "   Quantity: " + firstItem.quantity);
@@ -121,8 +141,8 @@ public class EditSystem
                 String newName = input.nextLine();
                 System.out.print("Confirm Update? (Y/N): ");
                 if (input.nextLine().equalsIgnoreCase("Y")) {
-                    // FIX: Use the correct variable 'recordToEdit'.
                     recordToEdit.customerName = newName;
+                    rewriteSalesData(saleRecords);
                 }
             }
             case 2 -> {
@@ -132,10 +152,10 @@ public class EditSystem
                 if (input.nextLine().equalsIgnoreCase("Y"))
                 {
                     recordToEdit.item.get(0).model = newModel;
+                    rewriteSalesData(saleRecords);
                 }
             }
             case 3 -> {
-                // Enhanced quantity editing with location support
                 System.out.println("Current Total Quantity: " + recordToEdit.item.get(0).quantity);
                 System.out.println("Location Breakdown:");
                 String[] locationNames = {
@@ -167,8 +187,27 @@ public class EditSystem
                 System.out.print("Confirm Update? (Y/N): ");
                 if (input.nextLine().equalsIgnoreCase("Y")) {
                     int oldLocQty = recordToEdit.item.get(0).location.get(locationIndex);
+                    int delta = newQuantity - oldLocQty;
+                    
                     recordToEdit.item.get(0).location.set(locationIndex, newQuantity);
                     recordToEdit.item.get(0).quantity = recordToEdit.item.get(0).quantity - oldLocQty + newQuantity;
+                    
+                    try {
+                        if (delta != 0) {
+                            List<Integer> deltaLocs = new ArrayList<>(Collections.nCopies(10, 0));
+                            deltaLocs.set(locationIndex, delta);
+                            ItemPurchased deltaItem = new ItemPurchased(recordToEdit.item.get(0).model, delta, recordToEdit.item.get(0).price, deltaLocs);
+                            List<ItemPurchased> deltaItems = new ArrayList<>();
+                            deltaItems.add(deltaItem);
+                            SaleRecord deltaRecord = new SaleRecord(LocalDateTime.now(), "Delta", deltaItems, "None", 0, "None");
+                            
+                            SalesSystem.saveToModelCsv(deltaRecord);
+                            SalesSystem.saveToStockCsv(deltaRecord);
+                        }
+                        rewriteSalesData(saleRecords);
+                    } catch (IOException e) {
+                        System.out.println("Error updating files: " + e.getMessage());
+                    }
                 }
             }
             case 4 -> {
@@ -178,6 +217,7 @@ public class EditSystem
                 System.out.print("Confirm Update? (Y/N): ");
                 if (input.nextLine().equalsIgnoreCase("Y")) {
                     recordToEdit.totalAmount = newTotal;
+                    rewriteSalesData(saleRecords);
                 }
             }
             case 5 -> {
@@ -186,10 +226,22 @@ public class EditSystem
                 System.out.print("Confirm Update? (Y/N): ");
                 if (input.nextLine().equalsIgnoreCase("Y")) {
                     recordToEdit.paymentMethod = newTransactionMethod;
+                    rewriteSalesData(saleRecords);
                 }
             }
         }
 
         System.out.println("Sales information updated successfully.");
+    }
+    
+    private void rewriteSalesData(List<SaleRecord> saleRecords) {
+        try (java.io.FileWriter writer = new java.io.FileWriter("sales_data.csv")) {
+            writer.write("Date,CustomerName,Model,Quantity,TotalAmount,PaymentMethod\n");
+            for (SaleRecord record : saleRecords) {
+                writer.write(record.toSalesCsvString());
+            }
+        } catch (IOException e) {
+            System.out.println("Error rewriting sales data: " + e.getMessage());
+        }
     }
 }
