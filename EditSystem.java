@@ -236,7 +236,7 @@ public class EditSystem
     
     private void rewriteSalesData(List<SaleRecord> saleRecords) {
         try (java.io.FileWriter writer = new java.io.FileWriter("sales_data.csv")) {
-            writer.write("Date,CustomerName,Model,Quantity,TotalAmount,PaymentMethod\n");
+            writer.write("Date,CustomerName,Model,TotalAmount,PaymentMethod,EmployeeID\n");
             for (SaleRecord record : saleRecords) {
                 writer.write(record.toSalesCsvString());
             }
