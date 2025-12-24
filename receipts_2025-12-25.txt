@@ -1,0 +1,22 @@
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2025-12-25 01:56:49
+From: SW2500-1
+To:   C60
+Staff: Tan Guan Han
+--- Items List ---
+- SW2500-1 (Qty: 5)
+--------------------------------
+Total Quantity: 5
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2025-12-25 01:58:48
+From: 2
+To:   C60
+Staff: Tan Guan Han
+--- Items List ---
+- SW2500-1 (Qty: 5)
+--------------------------------
+Total Quantity: 5
+--------------------------------
+
