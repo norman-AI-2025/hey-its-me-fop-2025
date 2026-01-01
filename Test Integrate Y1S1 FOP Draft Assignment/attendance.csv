@@ -1,0 +1,5 @@
+EmployeeID,Date,ClockIn,ClockOut,TotalHoursWorked
+C6001,2026-01-01,05:00 pm,05:00 pm,0.00
+C6003,2026-01-01,09:23 pm,09:23 pm,0.00
+C00008,2026-01-01,10:07 pm,10:07 pm,0.00
+C6002,2026-01-01,11:13 pm,11:13 pm,0.00

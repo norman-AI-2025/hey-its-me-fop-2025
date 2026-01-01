@@ -1,0 +1,78 @@
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2025-12-31 13:18:38
+From: C60
+To:   C60
+Staff: Tan Guan Han
+--- Items List ---
+- DW2300-1 (Qty: 4)
+- DW2300-2 (Qty: 5)
+--------------------------------
+Total Quantity: 9
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2025-12-31 13:29:49
+From: HQ (Service Center)
+To:   C60
+Staff: Tan Guan Han
+--- Items List ---
+- DW2300-2 (Qty: 6)
+--------------------------------
+Total Quantity: 6
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2025-12-31 13:31:44
+From: HQ (Service Center)
+To:   C61
+Staff: Adam bin Abu
+--- Items List ---
+- DW2300-2 (Qty: 60)
+--------------------------------
+Total Quantity: 60
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2025-12-31 13:32:03
+From: HQ (Service Center)
+To:   C61
+Staff: Adam bin Abu
+--- Items List ---
+- DW2300-2 (Qty: 1)
+--------------------------------
+Total Quantity: 1
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2025-12-31 13:32:39
+From: Kuala Lumpur City Centre
+To:   C61
+Staff: Adam bin Abu
+--- Items List ---
+- Kuala Lumpur City Centre (Qty: 9)
+--------------------------------
+Total Quantity: 9
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2025-12-31 18:57:35
+From: C65
+To:   C61
+Staff: Adam bin Abu
+--- Items List ---
+- SW2500-4 (Qty: 7)
+--------------------------------
+Total Quantity: 7
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2025-12-31 19:05:50
+From: C61
+To:   C60
+Staff: Tan Guan Han
+--- Items List ---
+- SW2500-2 (Qty: 7)
+--------------------------------
+Total Quantity: 7
+--------------------------------
+

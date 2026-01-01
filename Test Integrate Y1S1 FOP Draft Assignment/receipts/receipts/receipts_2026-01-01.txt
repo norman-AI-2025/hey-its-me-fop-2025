@@ -1,0 +1,55 @@
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2026-01-01 15:15:00
+From: C62
+To:   C60
+Staff: Tan Guan Han
+--- Items List ---
+- DW2300-3 (Qty: 1)
+--------------------------------
+Total Quantity: 1
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2026-01-01 15:15:39
+From: C67
+To:   C60
+Staff: Tan Guan Han
+--- Items List ---
+- DW2300-3 (Qty: 1)
+--------------------------------
+Total Quantity: 1
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2026-01-01 17:01:05
+From: C63
+To:   C60
+Staff: Tan Guan Han
+--- Items List ---
+- DW2300-3 (Qty: 0)
+--------------------------------
+Total Quantity: 0
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock In) ===
+Date/Time: 2026-01-01 18:05:06
+From: C63
+To:   C60
+Staff: Tan Guan Han
+--- Items List ---
+- DW2400-1 (Qty: 1)
+--------------------------------
+Total Quantity: 1
+--------------------------------
+
+=== STOCK TRANSACTION RECEIPT (Stock Out) ===
+Date/Time: 2026-01-01 18:05:49
+From: C60
+To:   C63
+Staff: Tan Guan Han
+--- Items List ---
+- DW2400-1 (Qty: 1)
+--------------------------------
+Total Quantity: 1
+--------------------------------
+

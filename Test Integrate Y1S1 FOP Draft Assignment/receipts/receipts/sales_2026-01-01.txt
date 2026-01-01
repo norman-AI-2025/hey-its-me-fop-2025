@@ -1,0 +1,124 @@
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 15:20:35
+Customer: vincenty
+Items:
+- DW2300-4 x3 @ RM349.0
+Total: RM1047.0
+Payment: E-Wallet
+Served by: Adam bin Abu
+=====================
+
+
+SaleID: XS20260101-0001
+Date/Time: 2026-01-01 03:20 pm
+Employee: Adam bin Abu (C6002) Outlet: C61
+Customer: vincenty
+Payment: E-Wallet
+Items:
+ - DW2300-4 x3 @ 349.00
+TOTAL: 1047.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 15:23:49
+Customer: hiii
+Items:
+- DW2400-3 x1 @ RM569.0
+- DW2400-3 x1 @ RM569.0
+- DW2400-3 x1 @ RM569.0
+Total: RM1707.0
+Payment: Cash
+Served by: Adam bin Abu
+=====================
+
+
+SaleID: XS20260101-0002
+Date/Time: 2026-01-01 03:23 pm
+Employee: Adam bin Abu (C6002) Outlet: C61
+Customer: hiii
+Payment: Cash
+Items:
+ - DW2400-3 x1 @ 569.00
+ - DW2400-3 x1 @ 569.00
+ - DW2400-3 x1 @ 569.00
+TOTAL: 1707.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 15:35:22
+Customer: hahah
+Items:
+- DW2400-2 x1 @ RM599.0
+Total: RM599.0
+Payment: E-Wallet
+Served by: Tan Guan Han
+=====================
+
+
+SaleID: XS20260101-0003
+Date/Time: 2026-01-01 03:35 pm
+Employee: Tan Guan Han (C6001) Outlet: C60
+Customer: hahah
+Payment: E-Wallet
+Items:
+ - DW2400-2 x1 @ 599.00
+TOTAL: 599.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 16:26:36
+Customer: hehe
+Items:
+- DW2400-2 x1 @ RM599.0
+Total: RM599.0
+Payment: Debit/Credit
+Served by: Tan Guan Han
+=====================
+
+
+SaleID: XS20260101-0004
+Date/Time: 2026-01-01 04:26 pm
+Employee: Tan Guan Han (C6001) Outlet: C60
+Customer: hehe
+Payment: Debit/Credit
+Items:
+ - DW2400-2 x1 @ 599.00
+TOTAL: 599.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 16:26:49
+Customer: hsjsj
+Items:
+- SW2400-1 x1 @ RM789.0
+Total: RM789.0
+Payment: Cash
+Served by: Tan Guan Han
+=====================
+
+
+SaleID: XS20260101-0005
+Date/Time: 2026-01-01 04:26 pm
+Employee: Tan Guan Han (C6001) Outlet: C60
+Customer: hsjsj
+Payment: Cash
+Items:
+ - SW2400-1 x1 @ 789.00
+TOTAL: 789.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 16:28:51
+Customer: haha
+Items:
+- SW2400-3 x1 @ RM769.0
+Total: RM769.0
+Payment: E-Wallet
+Served by: Jinu Saja
+=====================
+
+
+SaleID: XS20260101-0006
+Date/Time: 2026-01-01 04:28 pm
+Employee: Jinu Saja (C6003) Outlet: C62
+Customer: haha
+Payment: E-Wallet
+Items:
+ - SW2400-3 x1 @ 769.00
+TOTAL: 769.00
+----------------------------------

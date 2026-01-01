@@ -1,0 +1,100 @@
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 21:06:02
+Customer: ang
+Items:
+- DW2400-1 x1 @ RM599.0
+Total: RM599.0
+Payment: E-Wallet
+Served by: Tan Guan Han
+=====================
+
+
+SaleID: XS20260101-0007
+Date/Time: 2026-01-01 09:06 pm
+Employee: Tan Guan Han (C6001) Outlet: C60
+Customer: ang
+Payment: E-Wallet
+Items:
+ - DW2400-1 x1 @ 599.00
+TOTAL: 599.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 21:06:14
+Customer: Soon
+Items:
+- DW2300-2 x1 @ RM399.0
+Total: RM399.0
+Payment: Debit/Credit
+Served by: Tan Guan Han
+=====================
+
+
+SaleID: XS20260101-0008
+Date/Time: 2026-01-01 09:06 pm
+Employee: Tan Guan Han (C6001) Outlet: C60
+Customer: Soon
+Payment: Debit/Credit
+Items:
+ - DW2300-2 x1 @ 399.00
+TOTAL: 399.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 21:22:45
+Customer: suan
+Items:
+- DW2300-4 x1 @ RM349.0
+Total: RM349.0
+Payment: Debit/Credit
+Served by: Adam bin Abu
+=====================
+
+
+SaleID: XS20260101-0009
+Date/Time: 2026-01-01 09:22 pm
+Employee: Adam bin Abu (C6002) Outlet: C61
+Customer: suan
+Payment: Debit/Credit
+Items:
+ - DW2300-4 x1 @ 349.00
+TOTAL: 349.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 21:22:52
+Customer: hiiii
+Items:
+- DW2300-3 x1 @ RM349.0
+Total: RM349.0
+Payment: E-Wallet
+Served by: Adam bin Abu
+=====================
+
+
+SaleID: XS20260101-0010
+Date/Time: 2026-01-01 09:22 pm
+Employee: Adam bin Abu (C6002) Outlet: C61
+Customer: hiiii
+Payment: E-Wallet
+Items:
+ - DW2300-3 x1 @ 349.00
+TOTAL: 349.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2026-01-01 21:24:51
+Customer: paik
+Items:
+- DW2300-1 x1 @ RM399.0
+Total: RM399.0
+Payment: Debit/Credit
+Served by: Jinu Saja
+=====================
+
+
+SaleID: XS20260101-0011
+Date/Time: 2026-01-01 09:24 pm
+Employee: Jinu Saja (C6003) Outlet: C62
+Customer: paik
+Payment: Debit/Credit
+Items:
+ - DW2300-1 x1 @ 399.00
+TOTAL: 399.00
+----------------------------------

@@ -1,0 +1,11 @@
+====================================
+SALES RECEIPT
+DateTime: 2025-12-22 14:04
+Employee: C6001
+Outlet  : C60
+Customer: Vincent
+Payment : Cash
+Item    : DW2300-1 x1
+Total   : RM 399.00
+====================================
+

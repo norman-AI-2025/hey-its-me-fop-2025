@@ -1,0 +1,53 @@
+=== DAILY SALES RECEIPT (2025-12-31) ===
+
+SaleID: XS20251231-0001
+Date/Time: 2025-12-31 01:00 pm
+Employee: Tan Guan Han (C6001) Outlet: C60
+Customer: Vincent
+Payment: Debit/Credit
+Items:
+ - DW2300-2 x3 @ 399.00
+TOTAL: 1197.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2025-12-31 20:44:33
+Customer: hin
+Items:
+- DW2300-4 x4 @ RM349.0
+- DW2300-2 x3 @ RM399.0
+Total: RM2593.0
+Payment: Debit/Credit
+Served by: Tan Guan Han
+=====================
+
+
+SaleID: XS20251231-0002
+Date/Time: 2025-12-31 08:44 pm
+Employee: Tan Guan Han (C6001) Outlet: C60
+Customer: hin
+Payment: Debit/Credit
+Items:
+ - DW2300-4 x4 @ 349.00
+ - DW2300-2 x3 @ 399.00
+TOTAL: 2593.00
+----------------------------------
+=== SALES RECEIPT ===
+Date/Time: 2025-12-31 20:45:38
+Customer: hong
+Items:
+- DW2400-1 x1 @ RM599.0
+Total: RM599.0
+Payment: Cash
+Served by: Tan Guan Han
+=====================
+
+
+SaleID: XS20251231-0003
+Date/Time: 2025-12-31 08:45 pm
+Employee: Tan Guan Han (C6001) Outlet: C60
+Customer: hong
+Payment: Cash
+Items:
+ - DW2400-1 x1 @ 599.00
+TOTAL: 599.00
+----------------------------------
